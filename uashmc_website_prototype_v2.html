@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>UASHMC — United Antipolo Specialists Hospital and Medical Center</title>
+<meta name="description" content="Excellence in Every Life We Touch. United Antipolo Specialists Hospital and Medical Center provides comprehensive specialist care, diagnostics, and patient-centered medicine in Antipolo City."/>
+
+<!-- Fonts: Source Serif 4 (display) + Be Vietnam Pro (body) — the documented UASHMC pairing -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,500;0,8..60,600;0,8..60,700;0,8..60,800;1,8..60,600&display=swap" rel="stylesheet">
+
+<style>
+/* =========================================================================
+   V2 — "THE DIRECTORY": warm, editorial, wayfinding-first.
+   Same sampled brand tokens as v1; different composition, different mood.
+   ========================================================================= */
+:root {
+  --c-brand-900: #01305A;
+  --c-brand-700: #01487C;
+  --c-brand-600: #0A6FA0;
+  --c-brand-500: #0AADD0;
+  --c-brand-400: #5AC0E4;
+  --c-brand-100: #D2F0FC;
+  --c-brand-50:  #E7F6FD;
+
+  --c-rose-700: #A8446A;
+  --c-rose-500: #D87898;
+  --c-rose-100: #FBE3EB;
+  --c-rose-50:  #FDF2F6;
+
+  --c-gold: #D2A80C;
+  --c-urgent: #C0271A;
+  --c-care: #167355;
+
+  --c-surface: #FBFAF8;
+  --c-surface-white: #FFFFFF;
+  --c-sand-50: #FBF5EC;
+  --c-sand-100: #F6EBDA;
+
+  --c-text-primary: #062B46;
+  --c-text-body: #173F5C;
+  --c-text-muted: #4E6981;
+  --c-border: #D9E2EA;
+  --c-border-warm: #E9DCC4;
+
+  --ff-display: 'Source Serif 4', Georgia, serif;
+  --ff-body: 'Be Vietnam Pro', -apple-system, sans-serif;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+
+  --shadow-1: 0 1px 2px rgba(8,42,56,.06), 0 1px 3px rgba(8,42,56,.05);
+  --shadow-2: 0 4px 12px rgba(8,42,56,.08), 0 1px 3px rgba(8,42,56,.06);
+  --shadow-3: 0 18px 44px rgba(8,42,56,.16), 0 4px 12px rgba(8,42,56,.08);
+
+  --max-w: 1240px;
+  --ease: cubic-bezier(.2,.6,.2,1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 100%; }
+body {
+  font-family: var(--ff-body);
+  font-size: 1rem;
+  line-height: 1.68;
+  color: var(--c-text-body);
+  background: var(--c-surface);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img { max-width: 100%; height: auto; display: block; }
+button, input, textarea, select { font: inherit; }
+a { color: inherit; text-decoration: none; }
+:focus-visible { outline: 2.5px solid var(--c-brand-500); outline-offset: 3px; border-radius: var(--radius-sm); }
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 1.5rem; }
+.skip-link {
+  position: absolute; left: -9999px; top: 0; z-index: 200;
+  background: var(--c-brand-900); color: #fff; padding: .875rem 1.25rem; border-radius: 0 0 var(--radius-sm) 0;
+}
+.skip-link:focus { left: 0; }
+
+/* -- Utility bar -- */
+.util-bar { background: var(--c-brand-900); color: rgba(255,255,255,.88); font-size: .8125rem; }
+.util-in { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .5rem 1.5rem; max-width: var(--max-w); margin: 0 auto; flex-wrap: wrap; }
+.util-facts { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.util-facts a { color: #fff; font-weight: 600; }
+.util-em { display: inline-flex; align-items: center; gap: 6px; background: var(--c-urgent); color: #fff; padding: .375rem .875rem; border-radius: var(--radius-pill); font-weight: 700; font-size: .78125rem; }
+.util-em:hover { background: #8f1d13; }
+
+/* -- Header -- */
+.site-header { position: sticky; top: 0; z-index: 100; background: rgba(251,250,248,.92); backdrop-filter: blur(14px); border-bottom: 1px solid var(--c-border-warm); }
+.navbar { display: flex; align-items: center; justify-content: space-between; height: 80px; gap: 1rem; }
+.brand { display: flex; align-items: center; gap: .75rem; }
+.brand-chip { width: 46px; height: 46px; border-radius: 50%; background: #fff; box-shadow: var(--shadow-1); display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; }
+.brand-chip img { width: 100%; height: 100%; object-fit: cover; }
+.brand-text { display: flex; flex-direction: column; line-height: 1.2; }
+.brand-name { font-family: var(--ff-display); font-weight: 700; font-size: 1.15rem; color: var(--c-brand-900); }
+.brand-sub { font-size: .6875rem; color: var(--c-text-muted); letter-spacing: .02em; }
+
+.nav-menu { display: none; list-style: none; gap: 1.75rem; align-items: center; }
+.nav-menu a { font-size: .9375rem; font-weight: 600; color: var(--c-text-body); padding: .25rem 0; border-bottom: 2px solid transparent; transition: border-color .18s var(--ease), color .18s var(--ease); }
+.nav-menu a:hover, .nav-menu a.active { color: var(--c-brand-700); border-color: var(--c-gold); }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; font-weight: 700; font-size: .9375rem; padding: .75rem 1.375rem; min-height: 44px; border-radius: var(--radius-md); border: none; cursor: pointer; transition: background .18s var(--ease), box-shadow .18s var(--ease), transform .18s var(--ease); }
+.btn-primary { background: var(--c-brand-700); color: #fff; box-shadow: 0 4px 14px rgba(1,72,124,.28); }
+.btn-primary:hover { background: var(--c-brand-900); transform: translateY(-1px); }
+.btn-outline { background: transparent; color: var(--c-brand-700); border: 1.5px solid var(--c-border); }
+.btn-outline:hover { border-color: var(--c-brand-500); background: var(--c-brand-50); }
+.btn-urgent { background: var(--c-urgent); color: #fff; }
+.btn-urgent:hover { background: #8f1d13; }
+
+.nav-cta { display: none; }
+.hamburger { display: inline-flex; background: none; border: none; padding: .5rem; cursor: pointer; color: var(--c-brand-900); }
+.mobile-drawer { display: none; flex-direction: column; gap: .25rem; background: var(--c-surface-white); border-top: 1px solid var(--c-border-warm); padding: 1rem 1.5rem 1.5rem; }
+.mobile-drawer.open { display: flex; }
+.mobile-drawer a { padding: .75rem .25rem; font-weight: 600; border-bottom: 1px solid var(--c-border-warm); }
+
+@media (min-width: 960px) {
+  .nav-menu { display: flex; }
+  .nav-cta { display: inline-flex; }
+  .hamburger { display: none; }
+  .mobile-drawer { display: none !important; }
+}
+
+/* -- Hero (sky background, no building photo) -- */
+.hero { padding: 4.5rem 0 3.5rem; position: relative; overflow: hidden; background: #bfe3f7 url(HeroAssets/sky-poster.jpg) center 65% / cover no-repeat; }
+.hero-sky-frame { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 65%; z-index: 0; opacity: 0; transition: opacity 2s ease; }
+.hero-sky-frame.is-active { opacity: 1; }
+.hero::before { content: ''; position: absolute; inset: 0; z-index: 1; background: linear-gradient(100deg, var(--c-surface) 0%, var(--c-surface) 22%, rgba(251,250,248,.85) 40%, rgba(251,250,248,.35) 56%, rgba(251,250,248,0) 72%, rgba(251,250,248,0) 100%); }
+.hero-grid { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr; gap: 2.5rem; align-items: center; }
+.hero-grid > div:first-child { max-width: 640px; }
+.hero-building-panel { display: none; }
+@media (min-width: 900px) {
+  .hero-building-panel { display: block; position: absolute; top: -140px; left: 0; right: 0; z-index: 0; width: 100%; height: auto; }
+}
+.hero-blob { position: absolute; top: -10%; left: -14%; width: 560px; height: 560px; max-width: 65vw; max-height: 65vw; background: radial-gradient(circle at 35% 35%, #ffffff 0%, #ffffff 52%, rgba(255,255,255,0) 72%); border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%; z-index: 1; pointer-events: none; }
+@media (prefers-reduced-motion: reduce) { .hero-sky-frame { transition: none; } }
+/* -- Screen-corner leaves: fixed flush to the viewport corners, sized as a fraction of the screen so they scale on any monitor -- */
+.screen-leaf { position: fixed; bottom: -250px; z-index: 40; pointer-events: none; opacity: .9; filter: blur(3px); }
+.screen-leaf-left { left: 0; width: min(30vw, 500px); animation: leafSwayL 9s ease-in-out infinite; transform-origin: bottom left; }
+.screen-leaf-right { right: 0; bottom: -25px; width: min(14vw, 180px); animation: leafSwayR 10s ease-in-out infinite; transform-origin: bottom right; }
+@keyframes leafSwayL { 0%,100% { transform: rotate(-2deg); } 50% { transform: rotate(1.5deg); } }
+@keyframes leafSwayR { 0%,100% { transform: rotate(2deg); } 50% { transform: rotate(-1.5deg); } }
+@media (max-width: 640px) { .screen-leaf-left { width: min(48vw, 220px); } .screen-leaf-right { width: min(52vw, 240px); } .screen-leaf { opacity: .75; } }
+@media (prefers-reduced-motion: reduce) { .screen-leaf { animation: none; } }
+.hero-kicker { display: inline-flex; align-items: center; gap: .5rem; font-size: .78125rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--c-brand-600); margin-bottom: 1rem; }
+.hero-kicker::before { content: ''; width: 26px; height: 2px; background: var(--c-gold); display: inline-block; }
+.hero h1 { font-family: var(--ff-display); font-size: clamp(2.25rem, 5.4vw, 3.75rem); line-height: 1.08; font-weight: 700; color: var(--c-text-primary); letter-spacing: -.015em; margin-bottom: 1.125rem; }
+.hero h1 .duo { color: var(--c-brand-600); display: block; }
+.hero-lead { font-size: 1.1875rem; color: var(--c-text-muted); max-width: 490px; margin-bottom: 1.75rem; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: .875rem; margin-bottom: 2rem; }
+.hero-trust { display: flex; flex-wrap: wrap; gap: .5rem .5rem; font-size: .8125rem; color: var(--c-text-muted); }
+.hero-trust span { display: inline-flex; align-items: center; gap: 6px; background: var(--c-surface-white); border: 1px solid var(--c-border-warm); padding: .375rem .75rem; border-radius: var(--radius-pill); }
+.hero-trust svg { color: var(--c-care); flex-shrink: 0; }
+
+.hero-feature-card { position: relative; z-index: 2; opacity: .7; background: rgba(255,255,255,.92); backdrop-filter: blur(6px); border: 1px solid var(--c-border-warm); border-radius: var(--radius-lg); box-shadow: var(--shadow-2); padding: 1.25rem 1.5rem; margin-top: .5rem; display: flex; flex-wrap: wrap; gap: 1.25rem 1.75rem; max-width: 640px; }
+.hero-feature-item { display: flex; align-items: center; gap: .75rem; flex: 1 1 160px; }
+.hero-feature-ic { width: 40px; height: 40px; border-radius: 50%; background: var(--c-brand-50); color: var(--c-brand-700); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.hero-feature-item b { display: block; font-size: .875rem; color: var(--c-text-primary); }
+.hero-feature-item span { font-size: .75rem; color: var(--c-text-muted); }
+.hero-crosses { display: none; }
+@media (min-width: 700px) {
+  .hero-crosses { display: block; position: absolute; bottom: -1.75rem; left: 44%; width: 20px; height: 20px; opacity: .3; color: var(--c-brand-400); pointer-events: none; z-index: 1; }
+  .hero-crosses.c2 { left: 52%; bottom: -2.5rem; width: 15px; height: 15px; opacity: .25; }
+}
+
+/* -- Wayfinding rail (list, not icon-cards) -- */
+.way-rail { position: relative; z-index: 2; background: var(--c-surface-white); border: 1px solid var(--c-border-warm); border-radius: var(--radius-lg); box-shadow: var(--shadow-2); overflow: hidden; }
+.way-row { display: flex; align-items: center; gap: 1rem; padding: 1.125rem 1.375rem; border-bottom: 1px solid var(--c-border-warm); transition: background .18s var(--ease); }
+.way-row:last-child { border-bottom: none; }
+.way-row:hover { background: var(--c-brand-50); }
+.way-num { font-family: var(--ff-display); font-size: 1.0625rem; font-weight: 700; color: var(--c-brand-400); width: 28px; flex-shrink: 0; }
+.way-body { flex: 1; min-width: 0; }
+.way-title { font-weight: 700; color: var(--c-text-primary); font-size: 1rem; }
+.way-desc { color: var(--c-text-muted); font-size: .875rem; }
+.way-arrow { color: var(--c-brand-600); flex-shrink: 0; }
+
+/* -- Sections -- */
+.sec { padding: 4.5rem 0; }
+.sec.warm { background: var(--c-sand-50); }
+.sec.navy { background: var(--c-brand-900); color: rgba(255,255,255,.92); }
+.section-head { max-width: 680px; margin: 0 auto 2.75rem; text-align: center; }
+.section-head.left { text-align: left; margin-left: 0; }
+.eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: .78125rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--c-brand-600); margin-bottom: .625rem; }
+.sec.navy .eyebrow { color: var(--c-brand-400); }
+.section-title { font-family: var(--ff-display); font-size: clamp(1.875rem, 3.6vw, 2.5rem); font-weight: 700; color: var(--c-text-primary); letter-spacing: -.01em; margin-bottom: .5rem; }
+.sec.navy .section-title { color: #fff; }
+.rule { width: 46px; height: 3px; background: var(--c-gold); border-radius: var(--radius-pill); margin: .875rem auto 0; }
+.section-head.left .rule { margin-left: 0; }
+.section-desc { color: var(--c-text-muted); font-size: 1.03125rem; }
+.sec.navy .section-desc { color: rgba(255,255,255,.72); }
+
+/* -- About -- */
+.about-grid { display: grid; grid-template-columns: 1fr; gap: 2.75rem; align-items: center; }
+.about-quote { font-family: var(--ff-display); font-style: italic; font-size: 1.375rem; color: var(--c-brand-700); border-left: 3px solid var(--c-gold); padding-left: 1.125rem; margin-bottom: 1.25rem; }
+.about-p { font-size: 1.03125rem; color: var(--c-text-body); margin-bottom: 1.125rem; }
+.stat-rail { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.5rem; }
+.stat-pill { background: var(--c-surface-white); border: 1px solid var(--c-border-warm); border-radius: var(--radius-md); padding: .875rem 1.125rem; }
+.stat-pill b { display: block; font-family: var(--ff-display); font-size: 1.25rem; color: var(--c-brand-700); }
+.stat-pill span { font-size: .8125rem; color: var(--c-text-muted); }
+.about-photo { border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-2); border: 6px solid #fff; outline: 1px solid var(--c-border-warm); }
+.about-photo img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 4/3; }
+@media (min-width: 900px) { .about-grid { grid-template-columns: 1.1fr .9fr; } }
+
+/* -- Services: list rows, not icon cards -- */
+.clinics { border: 1px solid var(--c-border-warm); border-radius: var(--radius-lg); overflow: hidden; background: var(--c-surface-white); }
+.clinic-row { display: grid; grid-template-columns: 1fr; gap: .25rem; padding: 1.375rem 1.5rem; border-bottom: 1px solid var(--c-border-warm); }
+.clinic-row:last-child { border-bottom: none; }
+.clinic-top { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.clinic-name { font-family: var(--ff-display); font-weight: 700; font-size: 1.125rem; color: var(--c-text-primary); }
+.clinic-price { font-weight: 700; color: var(--c-brand-700); font-size: 1rem; white-space: nowrap; }
+.clinic-desc { color: var(--c-text-muted); font-size: .9375rem; max-width: 640px; }
+.clinic-note { font-size: .78125rem; color: var(--c-text-muted); font-style: italic; margin-top: .25rem; }
+.clinic-badge { display: inline-block; font-size: .6875rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--c-brand-600); background: var(--c-brand-50); padding: .1875rem .5rem; border-radius: var(--radius-pill); margin-bottom: .25rem; }
+
+/* -- Doctors -- */
+.doc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+.doc-card { background: var(--c-surface-white); border: 1px solid var(--c-border-warm); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-1); transition: box-shadow .2s var(--ease), transform .2s var(--ease); }
+.doc-card:hover { box-shadow: var(--shadow-2); transform: translateY(-2px); }
+.doc-photo { aspect-ratio: 1/1; overflow: hidden; background: var(--c-brand-100); }
+.doc-photo img { width: 100%; height: 100%; object-fit: cover; }
+.doc-body { padding: 1.125rem 1.25rem 1.375rem; }
+.doc-name { font-family: var(--ff-display); font-weight: 700; font-size: 1.0625rem; color: var(--c-text-primary); }
+.doc-spec { font-size: .875rem; color: var(--c-brand-700); font-weight: 600; margin-top: .1875rem; }
+.doc-spec.tbc { color: var(--c-text-muted); font-style: italic; font-weight: 500; }
+.doc-meta { font-size: .8125rem; color: var(--c-text-muted); margin-top: .625rem; padding-top: .625rem; border-top: 1px dashed var(--c-border-warm); }
+@media (min-width: 700px) { .doc-grid { grid-template-columns: repeat(4, 1fr); } }
+
+/* -- HMO -- */
+.hmo-wrap { background: var(--c-surface-white); border: 1px solid var(--c-border-warm); border-radius: var(--radius-lg); padding: 2rem; }
+.hmo-tags { display: flex; flex-wrap: wrap; gap: .625rem; margin: 1.5rem 0; }
+.hmo-tag { font-size: .875rem; font-weight: 600; color: var(--c-brand-700); background: var(--c-brand-50); border: 1px solid var(--c-brand-100); padding: .5rem 1rem; border-radius: var(--radius-pill); }
+.hmo-note { background: var(--c-sand-50); border: 1px solid var(--c-border-warm); border-radius: var(--radius-md); padding: 1rem 1.25rem; font-size: .9375rem; color: var(--c-text-body); }
+.hmo-note strong { color: var(--c-brand-700); }
+
+/* -- Gallery -- */
+.gal-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1rem; }
+.gal-item { position: relative; border-radius: var(--radius-md); overflow: hidden; aspect-ratio: 4/3; box-shadow: var(--shadow-1); }
+.gal-item img { width: 100%; height: 100%; object-fit: cover; }
+.gal-cap { position: absolute; left: 0; right: 0; bottom: 0; padding: .625rem .875rem; background: linear-gradient(0deg, rgba(1,48,90,.86), transparent); color: #fff; font-size: .8125rem; font-weight: 600; }
+.gal-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .5rem; background: var(--c-brand-50); border: 1.5px dashed var(--c-brand-100); color: var(--c-brand-600); text-align: center; padding: 1rem; }
+.gal-placeholder span { font-size: .8125rem; font-weight: 600; max-width: 160px; }
+@media (min-width: 700px) { .gal-grid { grid-template-columns: repeat(3,1fr); } }
+
+/* -- Trust rail (replaces fabricated testimonials) -- */
+.trust-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+.trust-card { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14); border-radius: var(--radius-lg); padding: 1.75rem; }
+.trust-card h3 { font-family: var(--ff-display); font-size: 1.1875rem; color: #fff; margin-bottom: .625rem; }
+.trust-card p { color: rgba(255,255,255,.72); font-size: .9375rem; }
+@media (min-width: 800px) { .trust-grid { grid-template-columns: repeat(3,1fr); } }
+
+/* -- Contact -- */
+.contact-grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; }
+.contact-item { display: flex; gap: .875rem; margin-bottom: 1.375rem; }
+.contact-ic { width: 40px; height: 40px; border-radius: 50%; background: var(--c-brand-50); color: var(--c-brand-700); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.contact-label { font-size: .78125rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--c-text-muted); }
+.contact-val { font-weight: 700; color: var(--c-text-primary); }
+.contact-sub { font-size: .875rem; color: var(--c-text-muted); }
+.form-card { background: var(--c-surface-white); border: 1px solid var(--c-border-warm); border-radius: var(--radius-lg); padding: 1.75rem; box-shadow: var(--shadow-1); }
+.form-row { display: grid; grid-template-columns: 1fr; gap: .875rem; margin-bottom: .875rem; }
+.form-input { width: 100%; border: 1.5px solid var(--c-border); border-radius: var(--radius-sm); padding: .75rem .875rem; min-height: 44px; background: var(--c-surface-white); }
+.form-input:focus { border-color: var(--c-brand-500); }
+.form-textarea { min-height: 100px; resize: vertical; }
+@media (min-width: 600px) { .form-row.two { grid-template-columns: 1fr 1fr; } }
+.form-ok { display: none; background: var(--c-brand-50); border: 1px solid var(--c-brand-100); color: var(--c-brand-900); border-radius: var(--radius-sm); padding: .875rem 1rem; font-size: .9375rem; margin-top: .875rem; }
+.form-ok.show { display: block; }
+
+/* -- Footer -- */
+.site-footer { background: var(--c-brand-900); color: rgba(255,255,255,.78); padding: 3.5rem 0 1.75rem; }
+.footer-grid { display: grid; grid-template-columns: 1fr; gap: 2.25rem; margin-bottom: 2.5rem; }
+.footer-brand { font-family: var(--ff-display); font-weight: 700; font-size: 1.25rem; color: #fff; margin-bottom: .625rem; }
+.footer-tag { font-size: .9375rem; margin-bottom: 1rem; max-width: 320px; }
+.footer-col-title { color: #fff; font-weight: 700; font-size: .875rem; letter-spacing: .04em; text-transform: uppercase; margin-bottom: 1rem; }
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: .625rem; font-size: .9375rem; }
+.footer-links a:hover { color: #fff; }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,.14); padding-top: 1.5rem; display: flex; flex-wrap: wrap; gap: .75rem; justify-content: space-between; font-size: .8125rem; }
+@media (min-width: 900px) { .footer-grid { grid-template-columns: 1.4fr .9fr .9fr 1.1fr; } }
+
+/* -- Sticky mobile action bar -- */
+.mobile-bar { display: flex; position: fixed; bottom: 0; left: 0; right: 0; z-index: 90; background: #fff; border-top: 1px solid var(--c-border-warm); box-shadow: 0 -4px 14px rgba(8,42,56,.08); }
+.mobile-bar a { flex: 1; text-align: center; padding: .875rem .5rem; font-size: .8125rem; font-weight: 700; border-right: 1px solid var(--c-border-warm); }
+.mobile-bar a:last-child { border-right: none; }
+.mobile-bar a.call { color: var(--c-urgent); }
+.mobile-bar a.doc { color: var(--c-brand-700); }
+@media (min-width: 960px) { .mobile-bar { display: none; } }
+body { padding-bottom: 64px; }
+@media (min-width: 960px) { body { padding-bottom: 0; } }
+</style>
+</head>
+<body>
+<img src="HeroAssets/leaf-left.png" alt="" aria-hidden="true" class="screen-leaf screen-leaf-left"/>
+<img src="HeroAssets/leaf-right.png" alt="" aria-hidden="true" class="screen-leaf screen-leaf-right"/>
+<a href="#main" class="skip-link">Skip to content</a>
+
+<div class="util-bar">
+  <div class="util-in">
+    <div class="util-facts">
+      <span>Trunkline: <a href="tel:0282483460">02 8248 3460</a></span>
+      <span>SMS/Viber: <a href="tel:+639478754949">+63 947 875 4949</a></span>
+    </div>
+    <a href="tel:0282483460" class="util-em">Emergency Line</a>
+  </div>
+</div>
+
+<header class="site-header" id="siteHeader">
+  <div class="container navbar">
+    <a href="#hero" class="brand" aria-label="UASHMC home">
+      <span class="brand-chip"><img src="images/logo.jpg" alt="UASHMC logo" loading="lazy"/></span>
+      <span class="brand-text">
+        <span class="brand-name">UASHMC</span>
+        <span class="brand-sub">United Antipolo Specialists Hospital</span>
+      </span>
+    </a>
+    <ul class="nav-menu">
+      <li><a href="#hero" class="active">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#doctors">Doctors</a></li>
+      <li><a href="#hmo">HMO</a></li>
+      <li><a href="#gallery">Facilities</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#doctors" class="btn btn-primary nav-cta">Find a Doctor</a>
+    <button class="hamburger" id="hamburgerBtn" aria-expanded="false" aria-controls="mobileDrawer" aria-label="Toggle navigation menu">
+      <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7"/></svg>
+    </button>
+  </div>
+  <nav class="mobile-drawer" id="mobileDrawer" aria-label="Mobile navigation">
+    <a href="#hero">Home</a>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#doctors">Doctors</a>
+    <a href="#hmo">HMO &amp; PhilHealth</a>
+    <a href="#gallery">Facilities</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main id="main">
+
+<!-- ================= HERO ================= -->
+<section id="hero" class="hero" aria-labelledby="heroHeading">
+  <img id="skyFrameA" src="HeroAssets/CloudFrames/cloud-01.jpg" alt="" aria-hidden="true" class="hero-sky-frame is-active"/>
+  <img id="skyFrameB" src="HeroAssets/CloudFrames/cloud-02.jpg" alt="" aria-hidden="true" class="hero-sky-frame"/>
+  <img src="HeroAssets/Building.png" alt="" aria-hidden="true" class="hero-building-panel"/>
+  <div class="hero-blob" aria-hidden="true"></div>
+
+  <div class="container hero-grid">
+    <div>
+      <p class="hero-kicker">Compassionate Care, Advanced Medicine</p>
+      <h1 id="heroHeading">Excellence in Every<span class="duo">Life We Touch.</span></h1>
+      <p class="hero-lead">Consultations, laboratory, imaging, surgery and maternity care are all on one site.</p>
+      <div class="hero-actions">
+        <a href="#doctors" class="btn btn-primary">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          Find a Doctor
+        </a>
+        <a href="tel:0282483460" class="btn btn-outline">Call the Trunkline &middot; 02 8248 3460</a>
+      </div>
+      <div class="hero-trust">
+        <span><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>Private specialists' hospital</span>
+        <span><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>Open since 2025</span>
+        <span><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>7 Marcos Highway, Mambugan</span>
+      </div>
+      <svg class="hero-crosses" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M12 4v16M4 12h16"/></svg>
+      <svg class="hero-crosses c2" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M12 4v16M4 12h16"/></svg>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="hero-feature-card">
+      <div class="hero-feature-item">
+        <span class="hero-feature-ic"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg></span>
+        <span><b>Multi-Specialty Care</b><span>Physicians across major disciplines</span></span>
+      </div>
+      <div class="hero-feature-item">
+        <span class="hero-feature-ic"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg></span>
+        <span><b>Modern Diagnostics</b><span>CT scan, sleep study, laboratory &amp; imaging</span></span>
+      </div>
+      <div class="hero-feature-item">
+        <span class="hero-feature-ic"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg></span>
+        <span><b>Patient-Centered Care</b><span>The patient's word before the clinical one</span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="container" style="margin-top: 2rem;">
+    <div class="way-rail">
+      <a class="way-row" href="#doctors">
+        <span class="way-num">01</span>
+        <span class="way-body">
+          <span class="way-title">Find a doctor</span>
+          <span class="way-desc">Browse by specialty and clinic day.</span>
+        </span>
+        <svg class="way-arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+      </a>
+      <a class="way-row" href="#hmo">
+        <span class="way-num">02</span>
+        <span class="way-body">
+          <span class="way-title">Check my HMO</span>
+          <span class="way-desc">See our 20 partner HMOs and PhilHealth.</span>
+        </span>
+        <svg class="way-arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+      </a>
+      <a class="way-row" href="#services">
+        <span class="way-num">03</span>
+        <span class="way-body">
+          <span class="way-title">Services &amp; packages</span>
+          <span class="way-desc">Maternity, sleep study, CT scan, surgery.</span>
+        </span>
+        <svg class="way-arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section id="about" class="sec" aria-labelledby="aboutHeading">
+  <div class="container about-grid">
+    <div>
+      <p class="eyebrow">About UASHMC</p>
+      <h2 class="section-title" id="aboutHeading">Healthcare Built Around You</h2>
+      <div class="rule" style="margin-left:0;"></div>
+      <blockquote class="about-quote" style="margin-top:1.25rem;">"Excellence in Every Life We Touch."</blockquote>
+      <p class="about-p">United Antipolo Specialists Hospital and Medical Center (UASHMC) is a private specialists' hospital along Marcos Highway in Antipolo City, bringing consultations, laboratory, imaging, surgery and maternity care together on one site.</p>
+      <p class="about-p">We bring together physicians across major medical disciplines to provide personalized care for you and your family.</p>
+      <div class="stat-rail">
+        <div class="stat-pill"><b>2025</b><span>Opened</span></div>
+        <div class="stat-pill"><b>6</b><span>Clinics &amp; specialties</span></div>
+        <div class="stat-pill"><b>20</b><span>HMO partners</span></div>
+      </div>
+    </div>
+    <div class="about-photo">
+      <img src="images/hospital%20front%20real.jpg" alt="Aerial view of United Antipolo Specialists Hospital and Medical Center in its barangay" loading="lazy"/>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SERVICES (list, not icon-cards) ================= -->
+<section id="services" class="sec warm" aria-labelledby="servicesHeading">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Services &amp; Packages</p>
+      <h2 class="section-title" id="servicesHeading">Comprehensive Care, One Site</h2>
+      <div class="rule"></div>
+      <p class="section-desc">Prices below are transcribed from our own published materials as of August 2026 &mdash; please confirm current pricing with our team.</p>
+    </div>
+
+    <div class="clinics">
+      <div class="clinic-row">
+        <div class="clinic-top"><span class="clinic-name">Maternity &amp; Birthing Packages</span><span class="clinic-price">NSD from &#8369;23,000</span></div>
+        <p class="clinic-desc">Normal spontaneous delivery and caesarean section (from &#8369;55,200), net of PhilHealth. OB-Gyn team.</p>
+        <p class="clinic-note">As published August 2026 &mdash; please confirm.</p>
+      </div>
+      <div class="clinic-row">
+        <div class="clinic-top"><span class="clinic-name">Sleep Study Lab</span><span class="clinic-price">From &#8369;25,500</span></div>
+        <p class="clinic-desc">Diagnostic, therapeutic and split-night polysomnography, run by our Heart &amp; Lung Unit.</p>
+        <p class="clinic-note">As published August 2026 &mdash; please confirm.</p>
+      </div>
+      <div class="clinic-row">
+        <div class="clinic-top"><span class="clinic-name">CT Scan &amp; Aortogram</span><span class="clinic-price">From &#8369;25,000</span></div>
+        <p class="clinic-desc">Radiology, Ground Floor. Digital imaging with rapid report turnaround.</p>
+        <p class="clinic-note">As published August 2026 &mdash; please confirm.</p>
+      </div>
+      <div class="clinic-row">
+        <div class="clinic-top"><span class="clinic-name">Laparoscopic Surgery</span><span class="clinic-price">From &#8369;65,000</span></div>
+        <p class="clinic-desc">Minimally invasive gallbladder removal for non-emergency, uncomplicated cases. Includes a 3-day private room, OR, anaesthesia, supplies and medicines.</p>
+        <p class="clinic-note">As published August 2026 &mdash; please confirm.</p>
+      </div>
+      <div class="clinic-row">
+        <div class="clinic-top"><span class="clinic-name">Annual Physical Exam &amp; Executive Packages</span></div>
+        <p class="clinic-desc">Individual and corporate health screening. <span style="font-style:italic; color:var(--c-text-muted);">Package pricing to be confirmed.</span></p>
+      </div>
+      <div class="clinic-row">
+        <div class="clinic-top"><span class="clinic-name">Emergency &amp; Trauma Care</span></div>
+        <p class="clinic-desc">For urgent and emergency cases, with on-call specialist doctors. Direct line: <strong>02 8248 3460</strong>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DOCTORS ================= -->
+<section id="doctors" class="sec" aria-labelledby="doctorsHeading">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Medical Specialists</p>
+      <h2 class="section-title" id="doctorsHeading">Find Your Specialist</h2>
+      <div class="rule"></div>
+      <p class="section-desc">Real physicians from our own published posts. Fields our sources don't confirm are left blank rather than guessed.</p>
+    </div>
+
+    <div class="doc-grid">
+      <article class="doc-card">
+        <div class="doc-photo"><img src="images/doctors1.jpg" alt="Dr. Alvin L. Yalung" loading="lazy"/></div>
+        <div class="doc-body">
+          <p class="doc-name">Dr. Alvin L. Yalung</p>
+          <p class="doc-spec tbc">Specialty to be confirmed</p>
+          <p class="doc-meta">Outstanding Employee awardee, City Government of Antipolo</p>
+        </div>
+      </article>
+      <article class="doc-card">
+        <div class="doc-photo"><img src="images/doctors2.jpg" alt="Dr. Joseph Justin H. Regalado" loading="lazy"/></div>
+        <div class="doc-body">
+          <p class="doc-name">Dr. Joseph Justin H. Regalado</p>
+          <p class="doc-spec">Internal Medicine &ndash; Adult Cardiology</p>
+          <p class="doc-meta">Cardiovascular MR specialist, EACVI-certified</p>
+        </div>
+      </article>
+      <article class="doc-card">
+        <div class="doc-photo"><img src="images/doctors3.jpg" alt="Dr. Jerome O. Laceda" loading="lazy"/></div>
+        <div class="doc-body">
+          <p class="doc-name">Dr. Jerome O. Laceda</p>
+          <p class="doc-spec">Internal Medicine &ndash; Cardiology</p>
+          <p class="doc-meta">Clinic day to be confirmed</p>
+        </div>
+      </article>
+      <article class="doc-card">
+        <div class="doc-photo"><img src="images/doctors7.jpg" alt="Dr. Elnah A. Gulliab" loading="lazy"/></div>
+        <div class="doc-body">
+          <p class="doc-name">Dr. Elnah A. Gulliab</p>
+          <p class="doc-spec">Internal Medicine &middot; Acupuncturist</p>
+          <p class="doc-meta">Mon / Wed / Fri, 11:00 AM&ndash;2:00 PM &middot; Room 507, 5th Floor</p>
+        </div>
+      </article>
+    </div>
+
+    <p style="text-align:center; margin-top:2rem; color:var(--c-text-muted); font-size:.9375rem;">
+      Also on our roster: Orthopedics, Pediatrics, Obstetrics &amp; Gynaecology, and our ENT &ndash; Head &amp; Neck Surgery unit. Full profiles are still being gathered.
+      <br><a href="#contact" class="btn btn-outline" style="margin-top:1rem;">Inquire About a Clinic Schedule</a>
+    </p>
+  </div>
+</section>
+
+<!-- ================= HMO ================= -->
+<section id="hmo" class="sec warm" aria-labelledby="hmoHeading">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">HMO &amp; PhilHealth</p>
+      <h2 class="section-title" id="hmoHeading">Our HMO Partners</h2>
+      <div class="rule"></div>
+      <p class="section-desc">We're partnered with 20 HMOs and healthcare providers, and accept PhilHealth. Coverage depends on your specific policy.</p>
+    </div>
+    <div class="hmo-wrap">
+      <div class="hmo-tags">
+        <span class="hmo-tag">AMAPHIL</span><span class="hmo-tag">AsianCare Health Systems</span><span class="hmo-tag">AVEGA</span>
+        <span class="hmo-tag">Carewell Health Systems</span><span class="hmo-tag">Cocolife Healthcare</span><span class="hmo-tag">CoopHealth</span>
+        <span class="hmo-tag">EastWest Healthcare</span><span class="hmo-tag">Hive Health (HPPI)</span><span class="hmo-tag">iCare</span>
+        <span class="hmo-tag">InLife Benefits</span><span class="hmo-tag">Intellicare</span><span class="hmo-tag">Kaiser International Healthgroup</span>
+        <span class="hmo-tag">Lacson &amp; Lacson Insurance Brokers</span><span class="hmo-tag">MedAsia Philippines</span><span class="hmo-tag">MediCard</span>
+        <span class="hmo-tag">MEDOCare Health System</span><span class="hmo-tag">Pacific Cross</span><span class="hmo-tag">Sun Life Grepa Healthcare</span>
+        <span class="hmo-tag">ValuCare</span><span class="hmo-tag">WellCare Health Maintenance</span>
+      </div>
+      <div class="hmo-note"><strong>Note:</strong> Coverage depends on your specific HMO policy and the procedure requested. Please coordinate with our HMO desk at the Ground Floor or call <strong>02 8248 3460</strong>. Not all HMOs are our partners &mdash; please check this list before travelling.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FACILITIES / GALLERY ================= -->
+<section id="gallery" class="sec" aria-labelledby="galleryHeading">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Our Facilities</p>
+      <h2 class="section-title" id="galleryHeading">What We Can Actually Show You</h2>
+      <div class="rule"></div>
+      <p class="section-desc">Real photography only. Where we don't have a confirmed photo yet, we say so instead of showing a stand-in.</p>
+    </div>
+
+    <div class="gal-grid">
+      <div class="gal-item"><img src="images/ctscan.jpg" alt="CT scan suite" loading="lazy"/><span class="gal-cap">CT Scan Suite</span></div>
+      <div class="gal-item"><img src="images/sleep%20study.jpg" alt="Sleep study in progress" loading="lazy"/><span class="gal-cap">Sleep Study Lab</span></div>
+      <div class="gal-item"><img src="images/banner%20logo.jpg" alt="Maternity campaign photo" loading="lazy"/><span class="gal-cap">Maternity Care</span></div>
+      <div class="gal-item"><img src="images/doctors6.jpg" alt="UASHMC medical staff, National Physicians Day" loading="lazy"/><span class="gal-cap">Our Team, National Physicians Day</span></div>
+      <div class="gal-item"><img src="images/doctors5.jpg" alt="ENT and Head and Neck Surgery unit" loading="lazy"/><span class="gal-cap">ENT &ndash; Head &amp; Neck Surgery Unit</span></div>
+      <div class="gal-item gal-placeholder" role="img" aria-label="Patient rooms photo not yet available">
+        <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 20h16M4 20V9l8-5 8 5v11M9 20v-6h6v6"/></svg>
+        <span>Patient rooms &mdash; photos coming soon</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TRUST (replaces fabricated testimonials) ================= -->
+<section class="sec navy" aria-labelledby="trustHeading">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Why Patients Choose Us</p>
+      <h2 class="section-title" id="trustHeading">Built on What We Can Show, Not What We Claim</h2>
+      <div class="rule"></div>
+      <p class="section-desc">We're a new hospital. Rather than quote reviews we don't have yet, here's what's actually true today.</p>
+    </div>
+    <div class="trust-grid">
+      <div class="trust-card">
+        <h3>Maternity, from &#8369;23,000</h3>
+        <p>Normal spontaneous delivery and caesarean packages, published on our own channels and net of PhilHealth.</p>
+      </div>
+      <div class="trust-card">
+        <h3>20 HMO Partners</h3>
+        <p>Partnered with 20 HMOs and healthcare providers, plus PhilHealth. Confirm your specific approval with our HMO desk.</p>
+      </div>
+      <div class="trust-card">
+        <h3>Open Since 2025</h3>
+        <p>A newly built specialists' hospital on Marcos Highway, Antipolo City, with modern diagnostic and imaging equipment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact" class="sec warm" aria-labelledby="contactHeading">
+  <div class="container contact-grid">
+    <div>
+      <p class="eyebrow">Contact Us</p>
+      <h2 class="section-title" id="contactHeading">We're Here to Help</h2>
+      <div class="rule" style="margin-left:0;"></div>
+      <div style="margin-top:1.75rem;">
+        <div class="contact-item">
+          <span class="contact-ic"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg></span>
+          <div><p class="contact-label">Address</p><p class="contact-val">7 Marcos Highway</p><p class="contact-sub">Barangay Mambugan, Antipolo City, Rizal</p></div>
+        </div>
+        <div class="contact-item">
+          <span class="contact-ic"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg></span>
+          <div><p class="contact-label">Trunkline</p><p class="contact-val">02 8248 3460</p><p class="contact-sub">SMS/Viber: +63 947 875 4949</p></div>
+        </div>
+        <div class="contact-item">
+          <span class="contact-ic"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></span>
+          <div><p class="contact-label">Service Hours</p><p class="contact-val">Emergency: for urgent and emergency cases</p><p class="contact-sub">OPD Clinics: schedule varies by specialist &mdash; call to confirm</p></div>
+        </div>
+      </div>
+      <a href="https://maps.google.com/?q=14.6250262,121.1399902" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="margin-top:.5rem;">Open in Google Maps &rarr;</a>
+    </div>
+
+    <div class="form-card">
+      <h3 style="font-family:var(--ff-display); font-size:1.25rem; margin-bottom:1.25rem;">Send an Inquiry</h3>
+      <form id="mainContactForm" novalidate>
+        <div class="form-row two">
+          <input type="text" class="form-input" required placeholder="Your Name" autocomplete="name"/>
+          <input type="email" class="form-input" required placeholder="Your Email" autocomplete="email" inputmode="email"/>
+        </div>
+        <div class="form-row two">
+          <input type="tel" class="form-input" placeholder="Mobile Number" autocomplete="tel" inputmode="tel"/>
+          <input type="text" class="form-input" placeholder="Service of Interest"/>
+        </div>
+        <div class="form-row">
+          <textarea class="form-input form-textarea" required placeholder="How can our medical team assist you?"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;">Send Inquiry &rarr;</button>
+        <p class="form-ok" id="formOk">Thanks &mdash; this concept form doesn't send yet, but on the live site your message would reach our front desk.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <p class="footer-brand">UASHMC</p>
+        <p class="footer-tag">"Excellence in Every Life We Touch." Serving Antipolo City and Rizal Province with dedicated specialists and patient-centered care.</p>
+      </div>
+      <div>
+        <p class="footer-col-title">Quick Links</p>
+        <ul class="footer-links">
+          <li><a href="#about">About UASHMC</a></li>
+          <li><a href="#services">Services &amp; Packages</a></li>
+          <li><a href="#doctors">Find a Doctor</a></li>
+          <li><a href="#hmo">HMO &amp; PhilHealth</a></li>
+          <li><a href="#gallery">Facilities</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-col-title">Get in Touch</p>
+        <ul class="footer-links">
+          <li>02 8248 3460</li>
+          <li>+63 947 875 4949</li>
+          <li>7 Marcos Highway, Antipolo City</li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-col-title">Follow Us</p>
+        <ul class="footer-links">
+          <li><a href="https://facebook.com/uashmc" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+          <li><a href="https://instagram.com/uashmc" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+          <li><a href="https://tiktok.com/@uashmc" target="_blank" rel="noopener noreferrer">TikTok</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 UASHMC &mdash; United Antipolo Specialists Hospital and Medical Center.</p>
+      <p>Design concept v2 &mdash; for internal review.</p>
+    </div>
+  </div>
+</footer>
+
+<div class="mobile-bar">
+  <a href="tel:0282483460" class="call">Call</a>
+  <a href="#doctors" class="doc">Find a Doctor</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<script>
+(function(){
+  var burger = document.getElementById('hamburgerBtn');
+  var drawer = document.getElementById('mobileDrawer');
+  if (burger && drawer) {
+    burger.addEventListener('click', function(){
+      var open = drawer.classList.toggle('open');
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    drawer.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){ drawer.classList.remove('open'); burger.setAttribute('aria-expanded','false'); });
+    });
+  }
+  var header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', function(){
+    if (window.scrollY > 8) header.style.boxShadow = '0 4px 20px rgba(8,42,56,.08)';
+    else header.style.boxShadow = 'none';
+  });
+  var form = document.getElementById('mainContactForm');
+  var ok = document.getElementById('formOk');
+  if (form) {
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      ok.classList.add('show');
+    });
+  }
+
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var frameA = document.getElementById('skyFrameA');
+  var frameB = document.getElementById('skyFrameB');
+  if (frameA && frameB && !reduceMotion) {
+    var total = 16;
+    var current = 2;
+    var showingA = true;
+    setInterval(function(){
+      current = current % total + 1;
+      var src = 'HeroAssets/CloudFrames/cloud-' + (current < 10 ? '0' + current : current) + '.jpg';
+      var next = showingA ? frameB : frameA;
+      var visible = showingA ? frameA : frameB;
+      next.src = src;
+      next.classList.add('is-active');
+      visible.classList.remove('is-active');
+      showingA = !showingA;
+    }, 2200);
+  }
+})();
+</script>
+</body>
+</html>
