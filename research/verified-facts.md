@@ -186,7 +186,7 @@ Two further views of the same building arrived with `real2`, both usable:
 
 | File                       | What it is                                                                                                                                      |
 | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| `hospital front real.jpg`  | A **drone photograph** — the building from above in its actual barangay. 480×251, low resolution. The most unambiguously real image in the kit. |
+| `hospital front real.png`  | A **drone photograph** — the building from above in its actual barangay, "UASHMC" signage legible on the rooftop. 1735×906. The most unambiguously real image in the kit. |
 | `hospital front real.jfif` | Portrait crop of the same drone pass. 480×640.                                                                                                  |
 
 ⚠️ **`hospital front real2.jpg` reads as an architectural visualisation, not a photograph** —
