@@ -233,12 +233,11 @@ main section { scroll-margin-top: 120px; }
 @media (min-width: 900px) { .about-grid { grid-template-columns: 1.1fr .9fr; } }
 
 #about { position: relative; overflow: hidden; }
-.about-deco-leaves { position: fixed; bottom: 0; left: 0; width: min(16vw, 180px); z-index: 2; pointer-events: none; opacity: 0; transition: opacity .3s var(--ease), transform .5s ease-out; will-change: transform; -webkit-mask-image: linear-gradient(0deg, transparent 0%, #000 8%); mask-image: linear-gradient(0deg, transparent 0%, #000 8%); }
-.about-deco-leaves.is-visible { opacity: .85; }
+.about-deco-leaves { position: fixed; bottom: 0; left: 0; width: min(11vw, 130px); z-index: 2; pointer-events: none; opacity: 0; transition: opacity .3s var(--ease), transform 1.4s ease-out; will-change: opacity, transform; -webkit-mask-image: linear-gradient(0deg, transparent 0%, #000 8%); mask-image: linear-gradient(0deg, transparent 0%, #000 8%); }
 @media (prefers-reduced-motion: reduce) { .about-deco-leaves { transition: none; } }
 .about-deco-plus { position: absolute; top: 0; right: 0; width: 64px; z-index: 0; pointer-events: none; opacity: .7; }
 #about .container { position: relative; z-index: 1; }
-@media (max-width: 640px) { .about-deco-leaves { width: 22vw; } .about-deco-plus { width: 48px; top: 0; right: 0; } }
+@media (max-width: 640px) { .about-deco-leaves { width: 16vw; } .about-deco-plus { width: 48px; top: 0; right: 0; } }
 
 /* Services list */
 .clinics { border: 1px solid var(--c-border-warm); border-radius: var(--radius-lg); overflow: hidden; background: var(--c-surface-white); }
@@ -978,24 +977,30 @@ body { padding-bottom: 64px; }
     var leaf = document.getElementById('aboutLeaves');
     var about = document.getElementById('about');
     if (!leaf || !about) return;
-    var MAX_PAN_X = 120;
-    function updatePan(){
-      if (reduceMotion) { leaf.style.transform = 'none'; return; }
+    var START_X = -220;
+    var END_X = 90;
+    var REVEAL_START = 0.35;
+    var REVEAL_END = 0.65;
+    function update(){
       var rect = about.getBoundingClientRect();
       var vh = window.innerHeight || document.documentElement.clientHeight;
       var progress = (vh - rect.top) / (vh + rect.height);
       progress = Math.min(Math.max(progress, 0), 1);
-      leaf.style.transform = 'translateX(' + (progress * MAX_PAN_X) + 'px)';
+
+      if (reduceMotion) {
+        leaf.style.transform = 'translateX(0)';
+        leaf.style.opacity = progress > 0 && progress < 1 ? .85 : 0;
+        return;
+      }
+
+      var reveal = (progress - REVEAL_START) / (REVEAL_END - REVEAL_START);
+      reveal = Math.min(Math.max(reveal, 0), 1);
+      var x = START_X + reveal * (END_X - START_X);
+      leaf.style.transform = 'translateX(' + x + 'px)';
+      leaf.style.opacity = (reveal * .85);
     }
-    window.addEventListener('scroll', updatePan, { passive: true });
-    updatePan();
-    if (!('IntersectionObserver' in window)) return;
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        leaf.classList.toggle('is-visible', entry.isIntersecting);
-      });
-    }, { threshold: 0.1 });
-    io.observe(about);
+    window.addEventListener('scroll', update, { passive: true });
+    update();
   }
 
   function initDotNav(){
