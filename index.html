@@ -977,26 +977,29 @@ body { padding-bottom: 64px; }
     var leaf = document.getElementById('aboutLeaves');
     var about = document.getElementById('about');
     if (!leaf || !about) return;
-    var START_X = -220;
-    var END_X = 90;
     var REVEAL_START = 0.35;
     var REVEAL_END = 0.65;
+    leaf.style.transform = 'none';
     function update(){
       var rect = about.getBoundingClientRect();
       var vh = window.innerHeight || document.documentElement.clientHeight;
+      var withinBounds = rect.bottom > 0 && rect.top < vh;
+
+      if (!withinBounds) {
+        leaf.style.opacity = 0;
+        return;
+      }
+
       var progress = (vh - rect.top) / (vh + rect.height);
       progress = Math.min(Math.max(progress, 0), 1);
 
       if (reduceMotion) {
-        leaf.style.transform = 'translateX(0)';
         leaf.style.opacity = progress > 0 && progress < 1 ? .85 : 0;
         return;
       }
 
       var reveal = (progress - REVEAL_START) / (REVEAL_END - REVEAL_START);
       reveal = Math.min(Math.max(reveal, 0), 1);
-      var x = START_X + reveal * (END_X - START_X);
-      leaf.style.transform = 'translateX(' + x + 'px)';
       leaf.style.opacity = (reveal * .85);
     }
     window.addEventListener('scroll', update, { passive: true });
