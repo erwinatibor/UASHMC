@@ -415,8 +415,8 @@ body { padding-bottom: 64px; }
   <div class="hero-blob" aria-hidden="true"></div>
 
   <div class="container hero-grid">
-    <img src="HeroAssets/leaf-left.png" alt="" aria-hidden="true" class="hero-leaf hero-leaf-left"/>
-    <img src="HeroAssets/leaf-right.png" alt="" aria-hidden="true" class="hero-leaf hero-leaf-right"/>
+    <img src="HeroAssets/LeafFrames/leaf-left-01.png" alt="" aria-hidden="true" class="hero-leaf hero-leaf-left"/>
+    <img src="HeroAssets/LeafFrames/leaf-right-001.png" alt="" aria-hidden="true" class="hero-leaf hero-leaf-right"/>
     <div>
       <p class="hero-kicker reveal">Compassionate Care, Advanced Medicine</p>
       <h1 id="heroHeading" class="reveal">Excellence in Every<span class="duo">Life We Touch.</span></h1>
@@ -971,6 +971,29 @@ body { padding-bottom: 64px; }
     }
     window.addEventListener('scroll', update, { passive: true });
     update();
+
+    if (reduceMotion) return;
+
+    function playFrames(img, prefix, total, frameMs){
+      if (!img) return;
+      var digits = ('' + total).length;
+      var frame = 1;
+      var cache = [];
+      var i, n, src;
+      for (i = 1; i <= total; i++) {
+        n = '' + i;
+        while (n.length < digits) n = '0' + n;
+        src = 'HeroAssets/LeafFrames/' + prefix + '-' + n + '.png';
+        cache.push(src);
+        (new Image()).src = src;
+      }
+      setInterval(function(){
+        frame = frame % total + 1;
+        img.src = cache[frame - 1];
+      }, frameMs);
+    }
+    playFrames(left, 'leaf-left', 45, 90);
+    playFrames(right, 'leaf-right', 120, 90);
   }
 
   function initAboutLeaves(){
